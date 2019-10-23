@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-ticket-my-suffix-heading" jhiTranslate="railwaysApp.ticket.home.createOrEditLabel">Create or edit a Ticket</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="railwaysApp.ticket.registerDate" for="field_registerDate">Register Date</label>
+                    <div class="input-group">
+                        <input id="field_registerDate" type="text" class="form-control" name="registerDate" ngbDatepicker  #registerDateDp="ngbDatepicker" formControlName="registerDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="registerDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('registerDate').invalid && (editForm.get('registerDate').dirty || editForm.get('registerDate').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('registerDate').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="railwaysApp.ticket.passenger" for="field_passenger">Passenger</label>
+                    <select class="form-control" id="field_passenger" name="passenger" formControlName="passengerId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="passengerOption.id" *ngFor="let passengerOption of passengers; trackBy: trackPassengerById">{{passengerOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="railwaysApp.ticket.train" for="field_train">Train</label>
+                    <select class="form-control" id="field_train" name="train" formControlName="trainId">
+                        <option *ngIf="!editForm.get('trainId').value" [ngValue]="null" selected></option>
+                        <option [ngValue]="trainOption.id" *ngFor="let trainOption of trains; trackBy: trackTrainById">{{trainOption.name}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('trainId').invalid && (editForm.get('trainId').dirty || editForm.get('trainId').touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('trainId').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

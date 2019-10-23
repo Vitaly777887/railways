@@ -1,0 +1,25 @@
+{
+    "railwaysApp": {
+        "passenger": {
+            "home": {
+                "title": "Passengers",
+                "createLabel": "Создать новый Passenger",
+                "createOrEditLabel": "Создать или отредактировать Passenger",
+                "notFound": "No Passengers found"
+            },
+            "created": "Новый Passenger создан с идентификатором {{ param }}",
+            "updated": "Passenger обновлен с идентификатором {{ param }}",
+            "deleted": "Passenger удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Passenger {{ id }}?"
+            },
+            "detail": {
+                "title": "Passenger"
+            },
+            "name": "Name",
+            "surname": "Surname",
+            "birthday": "Birthday",
+            "ticket": "Ticket"
+        }
+    }
+}

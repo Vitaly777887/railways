@@ -1,0 +1,82 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-station-train-my-suffix-heading" jhiTranslate="railwaysApp.stationTrain.home.createOrEditLabel">Create or edit a Station Train</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="railwaysApp.stationTrain.arrivalTime" for="field_arrivalTime">Arrival Time</label>
+                    <div class="d-flex">
+                        <input id="field_arrivalTime" type="datetime-local" class="form-control" name="arrivalTime" formControlName="arrivalTime" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('arrivalTime').invalid && (editForm.get('arrivalTime').dirty || editForm.get('arrivalTime').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('arrivalTime').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('arrivalTime').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="railwaysApp.stationTrain.departureTime" for="field_departureTime">Departure Time</label>
+                    <div class="d-flex">
+                        <input id="field_departureTime" type="datetime-local" class="form-control" name="departureTime" formControlName="departureTime" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('departureTime').invalid && (editForm.get('departureTime').dirty || editForm.get('departureTime').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('departureTime').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('departureTime').errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="railwaysApp.stationTrain.station" for="field_station">Station</label>
+                    <select class="form-control" id="field_station" name="station" formControlName="stationId">
+                        <option *ngIf="!editForm.get('stationId').value" [ngValue]="null" selected></option>
+                        <option [ngValue]="stationOption.id" *ngFor="let stationOption of stations; trackBy: trackStationById">{{stationOption.name}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('stationId').invalid && (editForm.get('stationId').dirty || editForm.get('stationId').touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('stationId').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="railwaysApp.stationTrain.train" for="field_train">Train</label>
+                    <select class="form-control" id="field_train" name="train" formControlName="trainId">
+                        <option *ngIf="!editForm.get('trainId').value" [ngValue]="null" selected></option>
+                        <option [ngValue]="trainOption.id" *ngFor="let trainOption of trains; trackBy: trackTrainById">{{trainOption.name}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('trainId').invalid && (editForm.get('trainId').dirty || editForm.get('trainId').touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('trainId').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

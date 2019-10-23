@@ -1,0 +1,23 @@
+{
+    "railwaysApp": {
+        "station": {
+            "home": {
+                "title": "Stations",
+                "createLabel": "Создать новый Station",
+                "createOrEditLabel": "Создать или отредактировать Station",
+                "notFound": "No Stations found"
+            },
+            "created": "Новый Station создан с идентификатором {{ param }}",
+            "updated": "Station обновлен с идентификатором {{ param }}",
+            "deleted": "Station удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Station {{ id }}?"
+            },
+            "detail": {
+                "title": "Station"
+            },
+            "name": "Name",
+            "stationTrain": "Station Train"
+        }
+    }
+}

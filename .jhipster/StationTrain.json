@@ -1,0 +1,48 @@
+{
+    "name": "StationTrain",
+    "fields": [
+        {
+            "fieldName": "arrivalTime",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "departureTime",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "station",
+            "otherEntityRelationshipName": "stationTrain",
+            "relationshipValidateRules": "required",
+            "relationshipName": "station",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "train",
+            "otherEntityRelationshipName": "stationTrain",
+            "relationshipValidateRules": "required",
+            "relationshipName": "train",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20191023000039",
+    "entityTableName": "station_train",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "mySuffix"
+}

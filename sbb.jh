@@ -1,0 +1,40 @@
+
+
+entity Station {
+name String required
+}
+entity StationTrain {
+arrivalTime ZonedDateTime required,
+departureTime ZonedDateTime required
+}
+entity Ticket {
+registerDate LocalDate required
+}
+entity Train {
+countPassengers Integer required,
+numberTrain Integer required
+}
+entity Passenger {
+name String required,
+surname String required,
+birthday LocalDate required
+}
+
+relationship OneToMany {
+Station{stationTrain} to StationTrain{station(name) required},
+Train{stationTrain} to StationTrain{train(name) required},
+Passenger{ticket} to Ticket{passenger},
+Train{ticket} to Ticket{train(name) required}
+}
+// Set pagination options
+paginate * with pagination
+
+// Use Data Transfert Objects (DTO)
+ dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+
+// Set an angular suffix
+ angularSuffix * with mySuffix

@@ -1,0 +1,80 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="railwaysApp.stationTrain.home.title">Station Trains</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-station-train-my-suffix" [routerLink]="['/station-train-my-suffix/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="railwaysApp.stationTrain.home.createLabel">
+            Create a new Station Train
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="stationTrains?.length === 0">
+        <span jhiTranslate="railwaysApp.stationTrain.home.notFound">No stationTrains found</span>
+    </div>
+    <div class="table-responsive" *ngIf="stationTrains?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="arrivalTime"><span jhiTranslate="railwaysApp.stationTrain.arrivalTime">Arrival Time</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="departureTime"><span jhiTranslate="railwaysApp.stationTrain.departureTime">Departure Time</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="stationName"><span jhiTranslate="railwaysApp.stationTrain.station">Station</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="trainName"><span jhiTranslate="railwaysApp.stationTrain.train">Train</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let stationTrain of stationTrains ;trackBy: trackId">
+                <td><a [routerLink]="['/station-train-my-suffix', stationTrain.id, 'view' ]">{{stationTrain.id}}</a></td>
+                <td>{{stationTrain.arrivalTime | date:'medium'}}</td>
+                <td>{{stationTrain.departureTime | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="stationTrain.stationId">
+                        <a [routerLink]="['/station-my-suffix', stationTrain.stationId , 'view' ]" >{{stationTrain.stationName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="stationTrain.trainId">
+                        <a [routerLink]="['/train-my-suffix', stationTrain.trainId , 'view' ]" >{{stationTrain.trainName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/station-train-my-suffix', stationTrain.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/station-train-my-suffix', stationTrain.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/station-train-my-suffix', { outlets: { popup: stationTrain.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="stationTrains?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

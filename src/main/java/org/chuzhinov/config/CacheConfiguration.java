@@ -40,6 +40,15 @@ public class CacheConfiguration {
             cm.createCache(org.chuzhinov.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(org.chuzhinov.domain.PersistentToken.class.getName(), jcacheConfiguration);
             cm.createCache(org.chuzhinov.domain.User.class.getName() + ".persistentTokens", jcacheConfiguration);
+            createCache(cm, org.chuzhinov.domain.Station.class.getName());
+            createCache(cm, org.chuzhinov.domain.Station.class.getName() + ".stationTrains");
+            createCache(cm, org.chuzhinov.domain.StationTrain.class.getName());
+            createCache(cm, org.chuzhinov.domain.Ticket.class.getName());
+            createCache(cm, org.chuzhinov.domain.Train.class.getName());
+            createCache(cm, org.chuzhinov.domain.Train.class.getName() + ".stationTrains");
+            createCache(cm, org.chuzhinov.domain.Train.class.getName() + ".tickets");
+            createCache(cm, org.chuzhinov.domain.Passenger.class.getName());
+            createCache(cm, org.chuzhinov.domain.Passenger.class.getName() + ".tickets");
             // jhipster-needle-ehcache-add-entry
         };
     }

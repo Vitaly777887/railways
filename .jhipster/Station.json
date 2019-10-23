@@ -1,0 +1,31 @@
+{
+    "name": "Station",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "stationTrain",
+            "otherEntityRelationshipName": "station",
+            "relationshipName": "stationTrain"
+        }
+    ],
+    "changelogDate": "20191023000038",
+    "entityTableName": "station",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "mySuffix"
+}

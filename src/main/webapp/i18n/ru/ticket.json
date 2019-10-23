@@ -1,0 +1,24 @@
+{
+    "railwaysApp": {
+        "ticket": {
+            "home": {
+                "title": "Tickets",
+                "createLabel": "Создать новый Ticket",
+                "createOrEditLabel": "Создать или отредактировать Ticket",
+                "notFound": "No Tickets found"
+            },
+            "created": "Новый Ticket создан с идентификатором {{ param }}",
+            "updated": "Ticket обновлен с идентификатором {{ param }}",
+            "deleted": "Ticket удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Ticket {{ id }}?"
+            },
+            "detail": {
+                "title": "Ticket"
+            },
+            "registerDate": "Register Date",
+            "passenger": "Passenger",
+            "train": "Train"
+        }
+    }
+}

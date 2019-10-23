@@ -1,0 +1,40 @@
+{
+    "name": "Ticket",
+    "fields": [
+        {
+            "fieldName": "registerDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "passenger",
+            "otherEntityRelationshipName": "ticket",
+            "relationshipName": "passenger",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "train",
+            "otherEntityRelationshipName": "ticket",
+            "relationshipValidateRules": "required",
+            "relationshipName": "train",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20191023000040",
+    "entityTableName": "ticket",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "mySuffix"
+}

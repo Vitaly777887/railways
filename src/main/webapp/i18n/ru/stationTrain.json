@@ -1,0 +1,25 @@
+{
+    "railwaysApp": {
+        "stationTrain": {
+            "home": {
+                "title": "Station Trains",
+                "createLabel": "Создать новый Station Train",
+                "createOrEditLabel": "Создать или отредактировать Station Train",
+                "notFound": "No Station Trains found"
+            },
+            "created": "Новый Station Train создан с идентификатором {{ param }}",
+            "updated": "Station Train обновлен с идентификатором {{ param }}",
+            "deleted": "Station Train удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Station Train {{ id }}?"
+            },
+            "detail": {
+                "title": "Station Train"
+            },
+            "arrivalTime": "Arrival Time",
+            "departureTime": "Departure Time",
+            "station": "Station",
+            "train": "Train"
+        }
+    }
+}

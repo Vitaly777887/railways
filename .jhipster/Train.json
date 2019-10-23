@@ -1,0 +1,44 @@
+{
+    "name": "Train",
+    "fields": [
+        {
+            "fieldName": "countPassengers",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "numberTrain",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "stationTrain",
+            "otherEntityRelationshipName": "train",
+            "relationshipName": "stationTrain"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "ticket",
+            "otherEntityRelationshipName": "train",
+            "relationshipName": "ticket"
+        }
+    ],
+    "changelogDate": "20191023000041",
+    "entityTableName": "train",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*",
+    "angularJSSuffix": "mySuffix"
+}

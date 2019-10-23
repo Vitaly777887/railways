@@ -1,0 +1,31 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="train">
+            <h2><span jhiTranslate="railwaysApp.train.detail.title">Train</span> {{train.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="railwaysApp.train.countPassengers">Count Passengers</span></dt>
+                <dd>
+                    <span>{{train.countPassengers}}</span>
+                </dd>
+                <dt><span jhiTranslate="railwaysApp.train.numberTrain">Number Train</span></dt>
+                <dd>
+                    <span>{{train.numberTrain}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/train-my-suffix', train.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
